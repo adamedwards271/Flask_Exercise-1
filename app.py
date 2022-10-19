@@ -5,8 +5,10 @@ from flask import Flask, render_template, request
 from datetime import datetime
 
 app = Flask(__name__)
-global studentOrganisationDetails
+global studentOrganisationDetails 
 # Assign default 5 values to studentOrganisationDetails for Application  3.
+
+studentOrganisationDetails = {'Name': 'Organisation',}
 
 
 @app.get('/')
@@ -31,12 +33,13 @@ def checkNumber():
     # Display "Provided input is not an integer!" if value is not a number on result.html page
     global number
     number = request.form['number']
-    if len(number == 0):
+    number = str(number)
+    if len(number) == 0:
         evenOdd = 'No number provided'
     elif int(number)%2 != 0:
-        evenOdd = 'Number' + number + 'is even'
+        evenOdd = 'Number ' + number + ' is odd'
     elif int(number)%2 == 0:
-        evenOdd = 'Number' + number + 'is odd'
+        evenOdd = 'Number ' + number + ' is even'
     else:
         evenOdd = 'Provided input is not an integer!'
 
@@ -47,13 +50,18 @@ def checkNumber():
 @app.get('/addStudentOrganisation')
 def displayStudentForm():
     # Complete this function to display studentFrom.html page
-    pass
+    return render_template('studentForm.html')
 
 
 @app.route('/addStudentOrganisation', methods=['POST'])
 def displayRegistrationPage():
     # Get student name and organisation from form.
     studentName = request.form['name']
+    studentOrganisation = request.form['organisation']
+    
+    studentOrganisationDetails[studentName] = studentOrganisation
+    
+    return render_template('StudentDetails.html', studentOrganisationDetails = studentOrganisationDetails)
 
     # Append this value to studentOrganisationDetails
 

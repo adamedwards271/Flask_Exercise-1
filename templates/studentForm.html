@@ -1,6 +1,19 @@
 {% block content %}
 <h1>Register</h1>
 <h4>Enter Student Information below</h4>
-<!--Form to request user's name-->
+
+<form action = "/addStudentOrganisation" method="POST">
+    <label for="name">Enter name:</label><br>
+    <input type="string" name="name" id="name">
+    <label for="name">Enter organisation:</label><br>
+    <select name="organisation" id="organisation">
+        <option value="charlotteHack">Charlotte Hack</option>
+      <option value="code9">Code 9</option>
+      <option value="womenWhoCode">Women Who Code</option>
+      <option value="runtimeTerror">Runtime Terror</option>
+      <option value="frontpageFreebirds">Frontpage Freebirds</option>
+    </select>
+    <input type="submit" value="Submit">
+</form>
 
 {% endblock %}

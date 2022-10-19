@@ -1,8 +1,11 @@
 {% block content %}
-<h1>Student Details</h1>
+<h1 style="color:blue">Student Details</h1>
 <table>
     {%for key,value in studentOrganisationDetails.items()%}
-
+    <tr> 
+        <td colspan='2'>{{key}}</td>
+        <td colspan='2'>{{value}}</td>
+    </tr>
     {%endfor%}
 </table>
 
